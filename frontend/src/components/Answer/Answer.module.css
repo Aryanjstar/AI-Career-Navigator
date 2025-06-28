@@ -1,0 +1,180 @@
+.answerContainer {
+    width: 100%;
+    min-width: 0;
+    max-width: 900px;
+    margin: 2em auto;
+    box-sizing: border-box;
+    overflow: visible;
+    word-break: break-word;
+    white-space: pre-line;
+    padding: 2em 2.5em;
+    background: rgb(249, 249, 249);
+    border-radius: 1em;
+    box-shadow:
+        0 4px 24px 0 rgba(0, 0, 0, 0.1),
+        0 1.5px 6px 0 rgba(0, 0, 0, 0.08);
+    outline: transparent solid 0.0625em;
+    transition:
+        box-shadow 0.2s,
+        background 0.2s;
+    scroll-snap-align: start;
+    scroll-margin-top: 1rem;
+}
+
+@media (max-width: 1024px) {
+    .answerContainer {
+        max-width: 98vw;
+        padding: 1.25em 0.5em;
+    }
+}
+
+.answerLogo {
+    font-size: 1.75em;
+}
+
+.answerText {
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.7em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.answerText h1,
+h2,
+h2 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.answerText table {
+    border-collapse: collapse;
+}
+
+.answerText td,
+.answerText th {
+    border: 1px solid;
+    padding: 0.3125em;
+}
+
+.selected {
+    outline: 0.125em solid rgba(115, 118, 225, 1);
+}
+
+.citationLearnMore {
+    margin-right: 0.3125em;
+    font-weight: 600;
+    line-height: 1.5em;
+}
+
+.citation {
+    font-weight: 500;
+    line-height: 1.5em;
+    text-align: center;
+    border-radius: 0.25em;
+    padding: 0em 0.5em;
+    background: #d1dbfa;
+    color: #123bb6;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.citation:hover {
+    text-decoration: underline;
+}
+
+.followupQuestionsList {
+    margin-top: 0.625em;
+}
+
+.followupQuestionLearnMore {
+    margin-right: 0.3125em;
+    font-weight: 600;
+    line-height: 1.5em;
+}
+
+.followupQuestion {
+    font-weight: 600;
+    line-height: 1.5em;
+    text-align: center;
+    border-radius: 0.25em;
+    padding: 0em 0.5em;
+    background: #e8ebfa;
+    color: black;
+    font-style: italic;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.supContainer {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.supContainer:hover {
+    text-decoration: underline;
+}
+
+sup {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.625em;
+    font-weight: 600;
+    vertical-align: top;
+    top: -1;
+    margin: 0em 0.125em;
+    min-width: 0.875em;
+    height: 0.875em;
+    border-radius: 0.1875em;
+    background: #d1dbfa;
+    color: #123bb6;
+    text-decoration-color: transparent;
+    outline: transparent solid 0.0625em;
+    cursor: pointer;
+}
+
+.retryButton {
+    width: fit-content;
+}
+
+@keyframes loading {
+    0% {
+        content: "";
+    }
+    25% {
+        content: ".";
+    }
+    50% {
+        content: "..";
+    }
+    75% {
+        content: "...";
+    }
+    100% {
+        content: "";
+    }
+}
+
+.loadingdots::after {
+    content: "";
+    animation: loading 1s infinite;
+}
+
+        content: "..";
+    }
+    75% {
+        content: "...";
+    }
+    100% {
+        content: "";
+    }
+}
+
+.loadingdots::after {
+    content: "";
+    animation: loading 1s infinite;
+}

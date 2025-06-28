@@ -1,0 +1,664 @@
+# AI Career Navigator - Comprehensive .gitignore
+
+# ============================================================================
+# 🚨 CRITICAL SECURITY - NEVER COMMIT THESE FILES
+# ============================================================================
+
+# Environment variables and secrets
+.env
+.env.local
+.env.development
+.env.production
+.env.staging
+.env.test
+*.env
+.env.*
+
+# Azure credentials and configuration
+.azure/
+azd-*.json
+*.azd.env
+azure.yaml.backup
+.azd/
+
+# API keys and secrets (NEVER COMMIT THESE!)
+secrets/
+config/secrets.json
+*.key
+*.pem
+*.p12
+*.pfx
+*secret*
+*password*
+*token*
+
+# Azure-specific sensitive files
+local.settings.json
+appsettings.Development.json
+appsettings.Production.json
+
+# ============================================================================
+# NODE.JS / FRONTEND
+# ============================================================================
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+.nyc_output
+
+# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# Bower dependency directory (https://bower.io/)
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directories
+jspm_packages/
+
+# Snowpack dependency directory (https://snowpack.dev/)
+web_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next/
+out/
+
+# Nuxt.js build / generate output
+.nuxt
+dist/
+
+# Gatsby files
+.cache/
+public/
+
+# Vite build output
+dist/
+dist-ssr/
+
+# Rollup build output
+build/
+
+# Storybook build outputs
+.out
+.storybook-out
+storybook-static
+
+# Temporary folders
+tmp/
+temp/
+
+# ============================================================================
+# PYTHON / BACKEND
+# ============================================================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poetry.lock
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#pdm.lock
+#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
+#   in version control.
+#   https://pdm.fming.dev/#use-with-ide
+.pdm.toml
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# ============================================================================
+# DATABASE & STORAGE
+# ============================================================================
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Database dumps
+*.sql
+*.dump
+
+# Analytics database
+analytics.db
+analytics.sqlite
+career_navigator.db
+
+# Uploaded files and user data
+uploads/
+user_data/
+resumes/
+temp_files/
+processed_files/
+
+# Backup files
+*.backup
+*.bak
+backup/
+
+# ============================================================================
+# LOGS & MONITORING
+# ============================================================================
+
+# Application logs
+logs/
+*.log
+*.log.*
+nohup.out
+
+# Debug logs
+debug.log
+error.log
+access.log
+career_nav.log
+
+# Performance logs
+performance/
+metrics/
+traces/
+
+# ============================================================================
+# IDE & EDITOR FILES
+# ============================================================================
+
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+# JetBrains IDEs (IntelliJ, PyCharm, WebStorm, etc.)
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ============================================================================
+# OS GENERATED FILES
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================================================
+# BUILD & DEPLOYMENT ARTIFACTS
+# ============================================================================
+
+# Build outputs
+build/
+dist/
+target/
+out/
+
+# Webpack
+.webpack/
+
+# Parcel
+.parcel-cache/
+
+# Static site generators
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Documentation builds
+docs/_build/
+site/
+
+# ============================================================================
+# TESTING & QUALITY ASSURANCE
+# ============================================================================
+
+# Test results
+test-results/
+playwright-report/
+test-output/
+screenshots/
+
+# Coverage reports
+coverage/
+.nyc_output/
+lcov.info
+
+# Lighthouse reports
+lighthouse/
+
+# ============================================================================
+# AZURE & CLOUD SERVICES
+# ============================================================================
+
+# Azure Functions
+local.settings.json
+.azurefunctions/
+
+# Azure Static Web Apps
+.vscode/
+staticwebapp.config.json
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Pulumi
+Pulumi.*.yaml
+
+# ============================================================================
+# AI & ML ARTIFACTS
+# ============================================================================
+
+# Model files (if storing locally)
+*.model
+*.pkl
+*.h5
+*.pb
+models/
+checkpoints/
+
+# Training data (should not be in repo)
+training_data/
+datasets/
+data/raw/
+data/processed/
+
+# Jupyter notebooks output
+*.ipynb_checkpoints/
+
+# MLflow
+mlruns/
+
+# ============================================================================
+# PACKAGE MANAGERS & DEPENDENCIES
+# ============================================================================
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# pnpm
+.pnpm-store/
+
+# Rush
+common/temp/
+
+# ============================================================================
+# PERFORMANCE & OPTIMIZATION
+# ============================================================================
+
+# Bundle analyzer
+bundle-analyzer-report.html
+
+# Lighthouse CI
+.lighthouseci/
+
+# WebPageTest
+wpt-results/
+
+# ============================================================================
+# MISCELLANEOUS
+# ============================================================================
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Archives
+*.tar
+*.tar.gz
+*.rar
+*.zip
+*.7z
+
+# Generated documentation
+api-docs/
+typedoc/
+
+# Compiled CSS (if using preprocessors)
+*.css.map
+
+# Generated favicons
+favicon/
+icons/generated/
+
+# User-specific files (examples)
+# Remove or modify these based on your needs
+my-notes.md
+todo.txt
+scratch/
+playground/
+personal-notes/
+test-resumes/
+sample-uploads/
+
+# ============================================================================
+# PROJECT-SPECIFIC EXCLUSIONS
+# ============================================================================
+
+# Custom project exclusions
+# Add your project-specific files here
+
+# Demo data (comment out if you want to include demo files)
+demo-resumes/
+sample-data/
+test-data/
+
+# Local testing files
+test-uploads/
+local-test-data/
+temp-uploads/
+
+# Generated reports
+reports/
+exports/
+generated-reports/
+
+# Cache directories
+.cache/
+.tmp/
+.temp/
+
+# Configuration backups
+config.backup.*
+settings.backup.*
+
+# Personal development files
+dev-notes.md
+personal-todo.txt
+local-config/
+
+# IDE workspace files
+.vscode/settings.json
+.idea/workspace.xml
+
+# OS-specific files that might contain sensitive info
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================================================
+# KEEP THESE FILES (Examples of what TO commit)
+# ============================================================================
+
+# Configuration templates (keep these)
+# !.env.example
+# !config.example.json
+# !azure.yaml.template
+
+# Documentation assets (keep these)
+# !docs/images/
+# !README.md
+# !CONTRIBUTING.md
+# !LICENSE
+
+# GitHub workflows (keep these)
+# !.github/workflows/
+
+# Docker files (keep these)
+# !Dockerfile
+# !docker-compose.yml
+# !.dockerignore

@@ -1,0 +1,112 @@
+.homeRoot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #f5f7fa;
+}
+
+.homeTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #222;
+}
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.featureCard {
+    background: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    transition:
+        box-shadow 0.2s,
+        transform 0.2s;
+    border: 2px solid transparent;
+}
+
+.featureCard:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+    border-color: #4f8cff;
+    transform: translateY(-4px) scale(1.03);
+}
+
+.featureCard h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1a237e;
+}
+
+.featureCard p {
+    font-size: 1.1rem;
+    color: #444;
+}
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #f5f7fa;
+}
+
+.homeTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #222;
+}
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.featureCard {
+    background: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    transition:
+        box-shadow 0.2s,
+        transform 0.2s;
+    border: 2px solid transparent;
+}
+
+.featureCard:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+    border-color: #4f8cff;
+    transform: translateY(-4px) scale(1.03);
+}
+
+.featureCard h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1a237e;
+}
+
+.featureCard p {
+    font-size: 1.1rem;
+    color: #444;
+}

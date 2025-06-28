@@ -1,0 +1,106 @@
+# azure.yaml - Azure Developer CLI Configuration
+# Learn more about azure.yaml: https://aka.ms/azd-config
+
+name: AI-Career-Navigator
+metadata:
+  template: AI-Career-Navigator@main
+
+# Azure services configuration
+services:
+  # Frontend React application
+  frontend:
+    project: ./frontend
+    language: ts
+    host: staticwebapp
+    dist: dist
+    
+  # Backend Python API
+  backend:
+    project: ./backend
+    language: python
+    host: containerapp
+
+# Infrastructure configuration
+infra:
+  provider: bicep
+  path: infra
+
+# Hooks for custom deployment steps
+hooks:
+  # Pre-deployment steps
+  predeploy:
+    shell: sh
+    run: |
+      echo "🚀 Starting AI Career Navigator deployment..."
+      echo "📝 Validating environment configuration..."
+      
+  # Post-deployment steps
+  postdeploy:
+    shell: sh
+    run: |
+      echo "✅ AI Career Navigator deployed successfully!"
+      echo "🌐 Frontend URL: $FRONTEND_URL"
+      echo "🔗 Backend API: $BACKEND_URL"
+      echo "📊 Monitoring: $APPLICATIONINSIGHTS_DASHBOARD_URL"
+      
+      # Display important endpoints
+      echo ""
+      echo "📋 Important URLs:"
+      echo "   • Application: $FRONTEND_URL"
+      echo "   • API Docs: $BACKEND_URL/docs"
+      echo "   • Health Check: $BACKEND_URL/health"
+      echo ""
+      echo "🔐 Next Steps:"
+      echo "   1. Configure your Azure OpenAI API keys"
+      echo "   2. Upload your first resume for analysis"
+      echo "   3. Explore the 3D career visualization"
+      echo ""
+      echo "📚 Documentation: https://github.com/your-username/ai-career-navigator"
+
+# Workflow configuration
+workflows:
+  up:
+    steps:
+      - azd provision
+      - azd deploy
+      
+  provision:
+    steps:
+      - azd provision
+      
+  deploy:
+    steps:
+      - azd deploy
+
+# Environment variables that will be set during deployment
+env:
+  # Azure OpenAI Configuration
+  AZURE_OPENAI_SERVICE_NAME: ${AZURE_OPENAI_SERVICE_NAME}
+  AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT}
+  AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY}
+  AZURE_OPENAI_DEPLOYMENT_NAME: ${AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4}
+  AZURE_OPENAI_API_VERSION: ${AZURE_OPENAI_API_VERSION=2024-02-01}
+  
+  # Azure AI Search Configuration
+  AZURE_SEARCH_SERVICE: ${AZURE_SEARCH_SERVICE}
+  AZURE_SEARCH_INDEX: ${AZURE_SEARCH_INDEX=career-navigator-index}
+  AZURE_SEARCH_API_KEY: ${AZURE_SEARCH_API_KEY}
+  
+  # Azure Storage Configuration
+  AZURE_STORAGE_ACCOUNT: ${AZURE_STORAGE_ACCOUNT}
+  AZURE_STORAGE_CONTAINER: ${AZURE_STORAGE_CONTAINER=resumes}
+  AZURE_STORAGE_CONNECTION_STRING: ${AZURE_STORAGE_CONNECTION_STRING}
+  
+  # Application Configuration
+  ENVIRONMENT: ${ENVIRONMENT=production}
+  API_VERSION: ${API_VERSION=v1}
+  
+  # Feature Flags
+  ENABLE_ANALYTICS: ${ENABLE_ANALYTICS=true}
+  ENABLE_3D_VISUALIZATION: ${ENABLE_3D_VISUALIZATION=true}
+  ENABLE_INTERVIEW_PREP: ${ENABLE_INTERVIEW_PREP=true}
+  
+  # Performance Configuration
+  MAX_FILE_SIZE_MB: ${MAX_FILE_SIZE_MB=10}
+  CACHE_TTL_MINUTES: ${CACHE_TTL_MINUTES=60}
+  RATE_LIMIT_PER_MINUTE: ${RATE_LIMIT_PER_MINUTE=100}

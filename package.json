@@ -1,0 +1,69 @@
+{
+  "name": "ai-career-navigator",
+  "version": "1.0.0",
+  "description": "AI-powered career development platform built with Azure OpenAI, React, and TypeScript",
+  "keywords": [
+    "ai",
+    "career",
+    "resume",
+    "interview",
+    "azure",
+    "openai",
+    "react",
+    "typescript",
+    "azure-developer-cli"
+  ],
+  "author": "Aryan Jain <aryanjstar@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/Aryanjstar/AI-Career-Navigator#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aryanjstar/AI-Career-Navigator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Aryanjstar/AI-Career-Navigator/issues"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
+  },
+  "scripts": {
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && pip install -r requirements.txt",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+    "build": "npm run build:frontend",
+    "build:frontend": "cd frontend && npm run build",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "cd frontend && npm test",
+    "test:backend": "cd backend && python -m pytest",
+    "test:e2e": "cd frontend && npm run test:e2e",
+    "lint": "npm run lint:frontend && npm run lint:backend",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:backend": "cd backend && python -m flake8 . && python -m black --check . && python -m isort --check-only .",
+    "lint:fix": "npm run lint:fix:frontend && npm run lint:fix:backend",
+    "lint:fix:frontend": "cd frontend && npm run lint:fix",
+    "lint:fix:backend": "cd backend && python -m black . && python -m isort .",
+    "format": "npm run format:frontend && npm run format:backend",
+    "format:frontend": "cd frontend && npm run format",
+    "format:backend": "cd backend && python -m black . && python -m isort .",
+    "clean": "npm run clean:frontend && npm run clean:backend",
+    "clean:frontend": "cd frontend && rm -rf node_modules dist",
+    "clean:backend": "cd backend && find . -type d -name '__pycache__' -exec rm -rf {} + && find . -name '*.pyc' -delete",
+    "deploy": "azd deploy",
+    "provision": "azd provision",
+    "up": "azd up",
+    "down": "azd down",
+    "logs": "azd logs --follow",
+    "monitor": "azd show"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "workspaces": [
+    "frontend"
+  ],
+  "azd": {
+    "template": "ai-career-navigator"
+  }
+}

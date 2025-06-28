@@ -1,0 +1,241 @@
+/* Main layout */
+.chatContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    margin: 0 auto;
+    background: #ffffff;
+}
+
+.chatHeader {
+    flex: 0 0 auto;
+    padding: 1rem 2rem 0.5rem;
+    border-bottom: 1px solid #e1e5e9;
+    background: #f8f9fa;
+}
+
+.headerControls {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Main content area with dashboard and chat */
+.mainContent {
+    flex: 1;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Career Dashboard */
+.careerDashboardContainer {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: #ffffff;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Chat interface */
+.chatMainContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+.chatMainContainerActive {
+    transform: translateX(0);
+}
+
+/* Feature transitions */
+.featureTransition {
+    transition:
+        opacity 0.3s ease-in-out,
+        transform 0.3s ease-in-out;
+}
+
+.featureEnter {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.featureEnterActive {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.featureExit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.featureExitActive {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.examplesSection {
+    flex: 0 0 auto;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e1e5e9;
+}
+
+.chatMessagesContainer {
+    flex: 1 1 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem 2rem;
+    background: #ffffff;
+    min-height: 0;
+    scroll-behavior: smooth;
+    overflow-anchor: none;
+    padding-bottom: 2rem;
+}
+
+.messageGroup {
+    margin-bottom: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.inputSection {
+    flex: 0 0 auto;
+    padding: 1rem 2rem 2rem;
+    background: #ffffff;
+    border-top: 1px solid #e1e5e9;
+    position: relative;
+}
+
+/* Chat message styles */
+.chatMessageGpt {
+    margin-bottom: 1.25rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.chatMessageGptMinWidth {
+    max-width: 31.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.analysisPanel {
+    padding: 1rem;
+}
+
+/* Responsive design */
+@media (min-width: 768px) {
+    .chatMessagesContainer {
+        padding: 1.5rem 3rem;
+    }
+
+    .inputSection {
+        padding: 1.5rem 3rem 2rem;
+    }
+
+    .chatHeader {
+        padding: 1rem 3rem 0.75rem;
+    }
+
+    .examplesSection {
+        padding: 2.5rem 3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .chatContainer {
+        max-width: 1200px;
+    }
+
+    .chatMessagesContainer {
+        padding: 2rem 4rem;
+    }
+
+    .inputSection {
+        padding: 1.5rem 4rem 2rem;
+    }
+
+    .chatHeader {
+        padding: 1.25rem 4rem 1rem;
+    }
+
+    .examplesSection {
+        padding: 3rem 4rem;
+    }
+}
+
+    margin-bottom: 1.25rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.chatMessageGptMinWidth {
+    max-width: 31.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.analysisPanel {
+    padding: 1rem;
+}
+
+/* Responsive design */
+@media (min-width: 768px) {
+    .chatMessagesContainer {
+        padding: 1.5rem 3rem;
+    }
+
+    .inputSection {
+        padding: 1.5rem 3rem 2rem;
+    }
+
+    .chatHeader {
+        padding: 1rem 3rem 0.75rem;
+    }
+
+    .examplesSection {
+        padding: 2.5rem 3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .chatContainer {
+        max-width: 1200px;
+    }
+
+    .chatMessagesContainer {
+        padding: 2rem 4rem;
+    }
+
+    .inputSection {
+        padding: 1.5rem 4rem 2rem;
+    }
+
+    .chatHeader {
+        padding: 1.25rem 4rem 1rem;
+    }
+
+    .examplesSection {
+        padding: 3rem 4rem;
+    }
+}
