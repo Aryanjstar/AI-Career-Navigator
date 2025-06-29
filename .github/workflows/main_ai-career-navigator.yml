@@ -75,5 +75,3 @@ jobs:
         with:
           app-name: 'AI-Career-Navigator'
           slot-name: 'Production'
-          package: './backend'
-          
