@@ -64,5 +64,4 @@ jobs:
         with:
           app-name: 'AI-Career'
           package: 'release.zip'
-          # CRITICAL: This is the correct startup command for a FLASK application
           startup-command: 'gunicorn --chdir backend creer_navigator_pro:app'
