@@ -1,4 +1,4 @@
-name: Deploy Python + React App to Azure Web App
+name: Build and Deploy Flask + React App to Azure
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,17 +24,17 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Create virtual environment and install Python dependencies
+      - name: Install Python dependencies
         run: |
           python -m venv venv
           source venv/bin/activate
-          pip install -r backend/requirements.txt
-
+          pip install --no-cache-dir -r backend/requirements.txt
+      
       - name: Install frontend dependencies and build
-        working-directory: frontend
         run: |
           npm install
           npm run build
+        working-directory: ./frontend
 
       - name: Copy frontend build to backend static directory
         run: |
@@ -45,22 +45,24 @@ jobs:
         run: |
           cd backend
           zip -r ../release.zip .
-
+      
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
-          name: app
+          name: python-app
           path: release.zip
 
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2CA08A2B12A048B49899722FD504741B }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_117D6E5A589C4D87B2FD046A0417914A }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4E291E6C1DA440DCB94AF66D18F0E123 }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'AI-Career'
-          package: release.zip
+          package: 'release.zip'
+          # CRITICAL: This is the correct startup command for a FLASK application
+          startup-command: 'gunicorn --chdir backend creer_navigator_pro:app'
