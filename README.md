@@ -1,4 +1,3 @@
-````markdown
 # 🎯 AI Career Navigator — <ins>v1</ins>
 
 [![Azure](https://img.shields.io/badge/Azure-OpenAI-0078d4.svg)](https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/)
