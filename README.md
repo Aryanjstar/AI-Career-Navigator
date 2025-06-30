@@ -16,6 +16,7 @@
 ### 🎬 Video Walkthrough
 
 See the AI Career Navigator in action!
+🔇 Due to browser restrictions, the video is muted by default. If you'd like to hear the audio, please unmute it.
 
 https://github.com/user-attachments/assets/51b16261-615e-4104-a1bc-867575344d2b
 
