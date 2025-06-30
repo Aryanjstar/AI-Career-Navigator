@@ -10,12 +10,15 @@
 > 📌 **Version: v1** — First public release with core features like resume analysis, job matching, and interview prep.
 
 <p align="center">
-  <a href="https://youtu.be/t_e-CtLxn_Q" target="_blank">
-    <img src="https://img.youtube.com/vi/t_e-CtLxn_Q/0.jpg" alt="AI Career Navigator Workflow Video" width="100%" />
-  </a>
+  
 </p>
 
-> 📹 **Watch the workflow video above to see how the platform works in action!**
+### 🎬 Video Walkthrough
+
+See the AI Career Navigator in action!
+
+https://github.com/user-attachments/assets/51b16261-615e-4104-a1bc-867575344d2b
+
 
 An intelligent career guidance platform that analyzes resumes, identifies skill gaps, generates interview questions, and provides personalized career roadmaps using Azure OpenAI and modern web technologies.
 
