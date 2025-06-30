@@ -180,4 +180,3 @@ Built with modern technologies and Azure AI services. Special thanks to the open
 ⭐ Star this repo if it helped you | 🐛 Report bugs | 💡 Suggest features
 
 </div>
-```
