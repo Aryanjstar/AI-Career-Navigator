@@ -1,0 +1,22 @@
+[build]
+  base = "app/frontend"
+  publish = "../backend/static"
+  command = "npm run build"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://ai-career-navigator.onrender.com/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/config"
+  to = "https://ai-career-navigator.onrender.com/config"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+

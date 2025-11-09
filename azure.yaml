@@ -1,0 +1,39 @@
+# Azure Developer CLI configuration
+name: ai-career-navigator
+metadata:
+  template: ai-career-navigator@0.0.1-beta
+
+services:
+  backend:
+    project: ./app/backend
+    language: python
+    host: containerapp
+    docker:
+      path: ./Dockerfile
+      context: ./
+    env:
+      - name: AZURE_OPENAI_ENDPOINT
+        value: ${AZURE_OPENAI_ENDPOINT}
+      - name: AZURE_OPENAI_API_KEY
+        value: ${AZURE_OPENAI_API_KEY}
+      - name: AZURE_OPENAI_CHATGPT_DEPLOYMENT
+        value: ${AZURE_OPENAI_CHATGPT_DEPLOYMENT}
+      - name: AZURE_OPENAI_CHATGPT_MODEL
+        value: ${AZURE_OPENAI_CHATGPT_MODEL}
+      - name: AZURE_OPENAI_API_VERSION
+        value: ${AZURE_OPENAI_API_VERSION}
+      - name: DEBUG
+        value: "False"
+      - name: HOST
+        value: "0.0.0.0"
+      - name: PORT
+        value: "8000"
+
+  frontend:
+    project: ./app/frontend
+    language: js
+    host: containerapp
+    docker:
+      path: ./Dockerfile
+      context: ./
+

@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: ai-career-navigator
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "pip install -r app/backend-production/requirements.txt"
+    startCommand: "cd app/backend-production && gunicorn --bind=0.0.0.0:$PORT --workers=2 --threads=4 --timeout=300 --worker-class=gthread --access-logfile=- --error-logfile=- --log-level=info app:app"
+    envVars:
+      - key: AZURE_OPENAI_ENDPOINT
+        sync: false
+      - key: AZURE_OPENAI_API_KEY
+        sync: false
+      - key: AZURE_OPENAI_CHATGPT_DEPLOYMENT
+        value: gpt-4.1
+      - key: AZURE_OPENAI_CHATGPT_MODEL
+        value: gpt-4.1
+      - key: AZURE_OPENAI_API_VERSION
+        value: 2024-02-01
+      - key: PYTHON_VERSION
+        value: 3.11.0
+
