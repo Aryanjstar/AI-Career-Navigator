@@ -440,14 +440,22 @@
             }
         }
         
-        /* FIX #6: Footer grid responsiveness */
+        /* FIX #6: Footer grid and margin responsiveness */
         @media (max-width: 640px) {
+            /* Footer container - remove huge margins on mobile */
+            footer {
+                margin-left: 1rem !important;
+                margin-right: 1rem !important;
+                margin-bottom: 2rem !important;
+                padding: 1.5rem !important;
+            }
+            
             /* Footer skills section - single column */
             footer .grid,
             footer > div > div:last-child {
                 display: flex !important;
                 flex-direction: column !important;
-                gap: 1.5rem !important;
+                gap: 1rem !important;
             }
             
             footer .grid > div,
@@ -455,15 +463,124 @@
                 width: 100% !important;
                 max-width: 100% !important;
             }
+            
+            /* Footer headings smaller on mobile */
+            footer h3 {
+                font-size: 1.75rem !important;
+            }
+            
+            footer h4 {
+                font-size: 1rem !important;
+            }
+            
+            /* Footer contact links - stack on mobile */
+            footer > div > div:nth-child(2) {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            
+            footer > div > div:nth-child(2) a {
+                width: 100% !important;
+                justify-content: center !important;
+            }
         }
         
         @media (min-width: 641px) and (max-width: 768px) {
             /* Footer - 2 columns on tablet */
+            footer {
+                margin-left: 2rem !important;
+                margin-right: 2rem !important;
+            }
+            
             footer .grid,
             footer > div > div:last-child {
                 display: grid !important;
                 grid-template-columns: repeat(2, 1fr) !important;
                 gap: 1.5rem !important;
+            }
+        }
+        
+        /* FIX #7: Chat buttons responsiveness for mobile */
+        @media (max-width: 640px) {
+            /* Chat input and buttons container */
+            .chat-container + div + div {
+                flex-wrap: wrap !important;
+                gap: 0.5rem !important;
+            }
+            
+            /* Chat input full width on mobile */
+            #user-message {
+                width: 100% !important;
+                flex: 1 1 100% !important;
+            }
+            
+            /* Clear and Send buttons side by side but smaller */
+            button[onclick*="clearChat"],
+            button[onclick*="sendMessage"] {
+                flex: 1 !important;
+                padding: 0.75rem 1rem !important;
+                font-size: 0.875rem !important;
+                min-width: 0 !important;
+            }
+        }
+        
+        /* FIX #8: Ensure navbar stays rounded/oval */
+        @media (max-width: 768px) {
+            nav#navbar {
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                border-radius: 9999px !important; /* Keep it pill-shaped */
+            }
+            
+            nav#navbar > div {
+                border-radius: 9999px !important;
+                overflow: hidden !important;
+            }
+            
+            nav#navbar .bg-blue-950\\/80,
+            nav#navbar .bg-gradient-to-br {
+                border-radius: 9999px !important;
+            }
+        }
+        
+        /* FIX #9: Feature buttons responsiveness */
+        @media (max-width: 640px) {
+            /* Feature buttons container */
+            .space-x-4 {
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                gap: 0.5rem !important;
+            }
+            
+            /* Feature buttons - full width on mobile */
+            button[onclick*="showTab"],
+            button[onclick*="career-chat"],
+            button[onclick*="resume-analysis"],
+            button[onclick*="interview-prep"],
+            button[onclick*="skill-analysis"] {
+                flex: 1 1 calc(50% - 0.25rem) !important;
+                min-width: 140px !important;
+                font-size: 0.875rem !important;
+                padding: 0.75rem 1rem !important;
+            }
+        }
+        
+        /* FIX #10: Chat container and cards better sizing */
+        @media (max-width: 640px) {
+            .chat-container {
+                padding: 1rem !important;
+                min-height: 300px !important;
+            }
+            
+            /* AI message cards */
+            .chat-container .glass-card {
+                max-width: 100% !important;
+                padding: 0.75rem !important;
+            }
+            
+            /* Profile section */
+            .glass-card {
+                padding: 1rem !important;
             }
         }
         
@@ -1788,7 +1905,7 @@
         }
 
         // Run cleanup on page load
-        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
             cleanupScrollProgress();
             
             // Run cleanup periodically to catch any dynamically added elements
@@ -1882,8 +1999,8 @@
             ['interview-role', 'target-company', 'company-size'].forEach(function(id) {
                 var el = document.getElementById(id);
                 if (el) updateSelectColor(el);
-            });
         });
+    });
 
 
 
