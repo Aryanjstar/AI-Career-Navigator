@@ -1,2 +1,12 @@
 #!/bin/bash
-gunicorn --bind=0.0.0.0:8000 --timeout 600 --workers=2 --threads=4 --worker-class=gthread app:app
+# Production startup with proper worker configuration
+gunicorn --bind=0.0.0.0:8000 \
+  --workers=2 \
+  --threads=4 \
+  --timeout=300 \
+  --worker-class=gthread \
+  --access-logfile=- \
+  --error-logfile=- \
+  --log-level=info \
+  app:app
+
