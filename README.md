@@ -12,7 +12,7 @@
 
 A modern, full-stack web application that revolutionizes career development through advanced AI technologies. Built with Azure OpenAI, React, and cutting-edge 3D visualizations.
 
-![AI Career Navigator Demo](docs/images/hero-demo.png)
+![AI Career Navigator Demo]([docs/images/hero-demo.png](https://youtu.be/t_e-CtLxn_Q))
 
 ## 🌟 Features
 
