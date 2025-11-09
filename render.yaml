@@ -5,7 +5,7 @@ services:
     region: oregon
     plan: free
     buildCommand: "pip install -r app/backend/requirements.txt"
-    startCommand: "cd app/backend && gunicorn --bind=0.0.0.0:$PORT --workers=2 --threads=4 --timeout=300 --worker-class=gthread --access-logfile=- --error-logfile=- --log-level=info app:app"
+    startCommand: "cd app/backend && export PYTHONPATH=/opt/render/project/src/app/backend:$PYTHONPATH && gunicorn --bind=0.0.0.0:$PORT --workers=2 --threads=4 --timeout=300 --worker-class=gthread --access-logfile=- --error-logfile=- --log-level=info app:app"
     envVars:
       - key: AZURE_OPENAI_ENDPOINT
         sync: false
