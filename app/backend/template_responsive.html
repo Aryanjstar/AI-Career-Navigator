@@ -549,19 +549,20 @@
             .space-x-4 {
                 flex-wrap: wrap !important;
                 justify-content: center !important;
-                gap: 0.5rem !important;
+                gap: 0.75rem !important;
+                padding: 0 1rem !important;
             }
             
-            /* Feature buttons - full width on mobile */
+            /* Feature buttons - 2x2 grid on mobile with better padding */
             button[onclick*="showTab"],
             button[onclick*="career-chat"],
             button[onclick*="resume-analysis"],
             button[onclick*="interview-prep"],
             button[onclick*="skill-analysis"] {
-                flex: 1 1 calc(50% - 0.25rem) !important;
-                min-width: 140px !important;
+                flex: 1 1 calc(50% - 0.375rem) !important;
+                min-width: 145px !important;
                 font-size: 0.875rem !important;
-                padding: 0.75rem 1rem !important;
+                padding: 0.875rem 1.25rem !important;
             }
         }
         
@@ -589,7 +590,7 @@
            NUCLEAR FIX: Manual utility classes
            Override ALL Tailwind from CDN
            ============================================ */
-        
+
         /* Grid utilities - MANUAL */
         .grid { display: grid !important; }
         .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
@@ -637,7 +638,7 @@
            FINAL NUCLEAR OVERRIDE - Works with Tailwind
            This MUST load after Tailwind
            ============================================ */
-        
+
         /* Force single column on mobile for the profile/chat container */
         @media (max-width: 640px) {
             /* Target the specific div that has the Profile + Chat */
@@ -671,7 +672,7 @@
                 <div class="flex items-center space-x-3">
                     <span class="text-2xl navbar-rocket-float">🚀</span>
                     <span class="gradient-text font-semibold text-lg hidden sm:block">AI Career Navigator</span>
-                    <span class="gradient-text font-semibold text-base italic sm:hidden">Career AI</span>
+                    <span class="gradient-text font-semibold text-base italic sm:hidden">AI Career</span>
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-1">
@@ -760,7 +761,7 @@
             <!-- Career Chat Tab -->
             <div id="career-chat" class="tab-content">
                 <div class="glass-card p-8">
-                    <div class="flex flex-col md:flex-row gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <!-- Profile Setup -->
                         <div class="space-y-6">
                             <h3 class="text-xl font-semibold text-white mb-4">Your Profile</h3>
