@@ -1,28 +1,4 @@
-## <!--
 
-<!-- lsof -i :8000 | grep LISTEN
-
-kill 58453 58487 -->
-
-name: RAG chat app with your data (Python)
-description: Chat with your domain data using Azure OpenAI and Azure AI Search.
-languages:
-
-- python
-- typescript
-- bicep
-- azdeveloper
-products:
-- azure-openai
-- azure-cognitive-search
-- azure-app-service
-- azure
-page_type: sample
-urlFragment: azure-search-openai-demo
-
----
-
--->
 
 # 🎯 AI Career Navigator
 
