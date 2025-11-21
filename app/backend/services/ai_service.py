@@ -1,6 +1,6 @@
 """
 AI Service module
-Handles all Azure OpenAI interactions with retry logic
+Handles all Azure OpenAI interactions with retry logic and caching
 """
 import logging
 import time
@@ -12,8 +12,10 @@ from config import (
     AZURE_OPENAI_ENDPOINT,
     AZURE_OPENAI_API_KEY,
     AZURE_OPENAI_DEPLOYMENT,
-    AZURE_OPENAI_API_VERSION
+    AZURE_OPENAI_API_VERSION,
+    TEMPERATURE
 )
+from utils.cache import get_cached_response, set_cached_response
 
 logger = logging.getLogger(__name__)
 
@@ -39,17 +41,18 @@ def get_client():
     return client
 
 @retry(
-    stop=stop_after_attempt(3),
+    stop=stop_after_attempt(2),  # Reduced retries to save costs
     wait=wait_exponential(multiplier=1, min=2, max=10),
     retry=retry_if_exception_type((openai.APIError, openai.APIConnectionError, openai.RateLimitError))
 )
-def get_ai_response(prompt, max_tokens=2000, system_prompt=None):
+def get_ai_response(prompt, max_tokens=1200, system_prompt=None):
     """
     Get response from Azure OpenAI with retry logic
+    COST-OPTIMIZED: Using GPT-3.5-Turbo with reduced tokens
     
     Args:
         prompt: User prompt/message
-        max_tokens: Maximum tokens in response
+        max_tokens: Maximum tokens in response (default: 1200, reduced from 2000)
         system_prompt: Optional custom system prompt
         
     Returns:
@@ -57,6 +60,12 @@ def get_ai_response(prompt, max_tokens=2000, system_prompt=None):
     """
     if not client:
         return "⚠️ AI service is temporarily unavailable. Please check your configuration and try again."
+    
+    # Check cache first (COST SAVINGS!)
+    cached = get_cached_response(prompt, max_tokens)
+    if cached:
+        logger.info("✅ Returning cached response (cost: $0.00)")
+        return cached
     
     # Default system prompt
     if system_prompt is None:
@@ -82,13 +91,21 @@ def get_ai_response(prompt, max_tokens=2000, system_prompt=None):
                 {"role": "user", "content": prompt}
             ],
             max_tokens=max_tokens,
-            temperature=0.7
+            temperature=TEMPERATURE
         )
         
         elapsed_time = time.time() - start_time
-        logger.info(f"✅ OpenAI response received in {elapsed_time:.2f}s")
+        # Log token usage for cost monitoring
+        usage = response.usage
+        cost_estimate = (usage.prompt_tokens * 0.0005 + usage.completion_tokens * 0.0015) / 1000
+        logger.info(f"✅ Response in {elapsed_time:.2f}s | Tokens: {usage.prompt_tokens}+{usage.completion_tokens}={usage.total_tokens} | Est. Cost: ${cost_estimate:.4f}")
         
-        return response.choices[0].message.content
+        result = response.choices[0].message.content
+        
+        # Cache the response for future requests
+        set_cached_response(prompt, max_tokens, result)
+        
+        return result
         
     except openai.RateLimitError as e:
         logger.error(f"❌ Rate limit exceeded: {e}")

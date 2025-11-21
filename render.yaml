@@ -12,9 +12,9 @@ services:
       - key: AZURE_OPENAI_API_KEY
         sync: false
       - key: AZURE_OPENAI_CHATGPT_DEPLOYMENT
-        value: gpt-4.1
+        value: gpt-35-turbo
       - key: AZURE_OPENAI_CHATGPT_MODEL
-        value: gpt-4.1
+        value: gpt-35-turbo
       - key: AZURE_OPENAI_API_VERSION
         value: 2024-02-01
       - key: PYTHON_VERSION

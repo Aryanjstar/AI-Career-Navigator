@@ -10,9 +10,16 @@ logger = logging.getLogger(__name__)
 # Azure OpenAI Configuration
 AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
 AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
-AZURE_OPENAI_DEPLOYMENT = os.getenv("AZURE_OPENAI_CHATGPT_DEPLOYMENT", "gpt-4.1")
-AZURE_OPENAI_MODEL = os.getenv("AZURE_OPENAI_CHATGPT_MODEL", "gpt-4.1")
+# COST OPTIMIZATION: Using GPT-3.5-Turbo (10x cheaper than GPT-4!)
+AZURE_OPENAI_DEPLOYMENT = os.getenv("AZURE_OPENAI_CHATGPT_DEPLOYMENT", "gpt-35-turbo")
+AZURE_OPENAI_MODEL = os.getenv("AZURE_OPENAI_CHATGPT_MODEL", "gpt-35-turbo")
 AZURE_OPENAI_API_VERSION = os.getenv("AZURE_OPENAI_API_VERSION", "2024-02-01")
+
+# Cost Control Settings
+MAX_TOKENS_DEFAULT = 1200  # Reduced from 2000
+MAX_TOKENS_ANALYSIS = 1500  # Reduced from 3000
+MAX_TOKENS_INTERVIEW = 2000  # Reduced from 6000
+TEMPERATURE = 0.6  # Slightly lower for more focused responses
 
 # Flask Configuration
 FLASK_PORT = int(os.getenv("PORT", "8000"))

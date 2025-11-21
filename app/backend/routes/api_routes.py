@@ -1,6 +1,6 @@
 """
 API Routes module
-Contains all Flask API endpoints
+Contains all Flask API endpoints with rate limiting
 """
 import logging
 from datetime import datetime
@@ -8,16 +8,42 @@ from flask import Blueprint, request, jsonify
 
 from services.ai_service import get_ai_response, get_client
 from utils.file_processor import extract_text_from_file
-from config import AZURE_OPENAI_MODEL, AZURE_OPENAI_DEPLOYMENT
+from utils.rate_limiter import is_rate_limited, record_request
+from config import (
+    AZURE_OPENAI_MODEL,
+    AZURE_OPENAI_DEPLOYMENT,
+    MAX_TOKENS_DEFAULT,
+    MAX_TOKENS_ANALYSIS,
+    MAX_TOKENS_INTERVIEW
+)
 
 logger = logging.getLogger(__name__)
 
 # Create Blueprint
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
+def check_rate_limit():
+    """Check rate limit for current request"""
+    # Get client IP
+    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    if ip:
+        ip = ip.split(',')[0].strip()
+    
+    limited, reason = is_rate_limited(ip)
+    if limited:
+        return jsonify({"error": reason}), 429
+    
+    record_request(ip)
+    return None
+
 @api_bp.route('/career-chat', methods=['POST'])
 def career_chat():
-    """Handle career guidance chat with better error handling"""
+    """Handle career guidance chat with rate limiting"""
+    # Check rate limit
+    rate_limit_response = check_rate_limit()
+    if rate_limit_response:
+        return rate_limit_response
+    
     try:
         data = request.get_json()
         user_message = data.get('message', '')
@@ -65,7 +91,7 @@ Provide a comprehensive, in-depth, and actionable response that is STRICTLY tail
 Maintain a professional, encouraging, and mentoring tone.
 """
         
-        response = get_ai_response(prompt, max_tokens=3000)
+        response = get_ai_response(prompt, max_tokens=MAX_TOKENS_ANALYSIS)
         
         return jsonify({
             "response": response,
@@ -78,7 +104,12 @@ Maintain a professional, encouraging, and mentoring tone.
 
 @api_bp.route('/resume-analysis', methods=['POST'])
 def resume_analysis():
-    """Analyze resume with comprehensive error handling"""
+    """Analyze resume with rate limiting"""
+    # Check rate limit
+    rate_limit_response = check_rate_limit()
+    if rate_limit_response:
+        return rate_limit_response
+    
     try:
         resume_text = ""
         
@@ -130,7 +161,7 @@ def resume_analysis():
         5.  **Actionable Plan for Improvement:** Provide a prioritized list of the top 3-5 actions the user must take to improve their resume, explaining the high-value impact of each action.
         """
         
-        analysis = get_ai_response(prompt, max_tokens=3000)
+        analysis = get_ai_response(prompt, max_tokens=MAX_TOKENS_ANALYSIS)
         
         return jsonify({
             "analysis": analysis,
@@ -143,7 +174,12 @@ def resume_analysis():
 
 @api_bp.route('/interview-prep', methods=['POST'])
 def interview_prep():
-    """Generate interview questions with error handling"""
+    """Generate interview questions with rate limiting"""
+    # Check rate limit
+    rate_limit_response = check_rate_limit()
+    if rate_limit_response:
+        return rate_limit_response
+    
     try:
         data = request.get_json()
         role = data.get('role', '')
@@ -197,7 +233,7 @@ def interview_prep():
         Keep it practical and actionable. Focus on what matters most for {role} at {target_company}.
         """
         
-        response_text = get_ai_response(prompt, max_tokens=6000)
+        response_text = get_ai_response(prompt, max_tokens=MAX_TOKENS_INTERVIEW)
         
         return jsonify({
             "response": response_text,
@@ -210,7 +246,12 @@ def interview_prep():
 
 @api_bp.route('/skill-analysis', methods=['POST'])
 def skill_analysis():
-    """Analyze skill gaps with error handling"""
+    """Analyze skills with rate limiting"""
+    # Check rate limit
+    rate_limit_response = check_rate_limit()
+    if rate_limit_response:
+        return rate_limit_response
+    
     try:
         data = request.get_json()
         target_role = data.get('target_role', '')
@@ -247,7 +288,7 @@ def skill_analysis():
         <p>[Provide a realistic salary range and comment on market demand for the target role.]</p>
         """
         
-        analysis = get_ai_response(prompt, max_tokens=2000)
+        analysis = get_ai_response(prompt, max_tokens=MAX_TOKENS_ANALYSIS)
         
         return jsonify({
             "analysis": analysis,
