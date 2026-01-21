@@ -66,11 +66,11 @@ https://github.com/user-attachments/assets/d84e24d1-8106-4456-a8fe-b8b9fdac8552
 
 **Backend:**
 
-- **Python 3.11** with FastAPI for high-performance APIs
-- **Azure OpenAI Service** with GPT-4 for intelligent analysis
-- **Azure AI Search** for document indexing and retrieval
-- **Azure Blob Storage** for secure file storage
-- **PostgreSQL** for structured data persistence
+- **Python 3.11** with Flask for lightweight, production-ready APIs
+- **Azure OpenAI Service** with GPT-3.5-Turbo/GPT-4 for intelligent analysis
+- **Gunicorn** with gthread workers for production deployment
+- **Response Caching** for cost optimization and faster responses
+- **Rate Limiting** for API protection and fair usage
 
 **Infrastructure:**
 
@@ -92,8 +92,8 @@ https://github.com/user-attachments/assets/d84e24d1-8106-4456-a8fe-b8b9fdac8552
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/ai-career-navigator.git
-cd ai-career-navigator
+git clone https://github.com/Aryanjstar/AI-Career-Navigator.git
+cd AI-Career-Navigator
 
 # Install dependencies
 npm install
@@ -120,9 +120,13 @@ azd env set AZURE_OPENAI_CHATGPT_MODEL "gpt-4"
 azd up
 
 # Or run locally for development
-npm run dev  # Frontend on http://localhost:3000
-python -m uvicorn app:app --reload  # Backend on http://localhost:8000
+cd app/frontend && npm run dev  # Frontend on http://localhost:5173
+cd app/backend && python -m flask run --host 0.0.0.0 --port 8000  # Backend on http://localhost:8000
 ```
+
+### 🌐 Live Demo
+
+**[https://ai-career-navigator-backend.azurewebsites.net](https://ai-career-navigator-backend.azurewebsites.net)**
 
 ## 📸 Screenshots
 
@@ -204,15 +208,16 @@ AI-powered suggestions for:
 ```bash
 # Start frontend development server
 cd app/frontend
-npm run dev
+npm install
+npm run dev  # Runs on http://localhost:5173
 
 # Start backend with hot reload
 cd app/backend
-python -m uvicorn app:app --reload --host 0.0.0.0 --port 8000
+pip install -r requirements.txt
+python -m flask run --host 0.0.0.0 --port 8000 --debug
 
-# Run tests
-npm test                    # Frontend tests
-python -m pytest          # Backend tests
+# Or use gunicorn for production-like environment
+gunicorn --bind=0.0.0.0:8000 --workers=2 --threads=4 app:app
 ```
 
 ### Environment Variables
@@ -229,10 +234,11 @@ VITE_ENVIRONMENT=development
 **Backend (.env):**
 
 ```env
-OPENAI_API_KEY=your-api-key
-OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
-AZURE_SEARCH_SERVICE=your-search-service
-AZURE_SEARCH_INDEX=your-index
+AZURE_OPENAI_API_KEY=your-api-key
+AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
+AZURE_OPENAI_CHATGPT_DEPLOYMENT=gpt-35-turbo
+AZURE_OPENAI_CHATGPT_MODEL=gpt-35-turbo
+AZURE_OPENAI_API_VERSION=2024-02-01
 ```
 
 ### Code Quality
@@ -254,28 +260,28 @@ python -m flake8
 
 | Service            | Tier        | Cost (USD)  | Usage                    |
 | ------------------ | ----------- | ----------- | ------------------------ |
-| Azure App Service  | B1 Basic    | ~$13        | Web hosting              |
-| Azure OpenAI       | Pay-per-use | ~$30-50     | API calls                |
-| Azure AI Search    | Basic       | ~$25        | Document indexing        |
-| Azure Blob Storage | Standard    | ~$5         | File storage             |
-| **Total**          |             | **~$73-93** | **Light-moderate usage** |
+| Azure App Service  | B1 Basic    | ~$13        | Web hosting (Always On)  |
+| Azure OpenAI       | Pay-per-use | ~$2-10      | API calls (GPT-3.5-Turbo)|
+| **Total**          |             | **~$15-23** | **Light-moderate usage** |
 
-### Cost Reduction Tips
+### Cost Optimization Features (Built-in)
 
-1. **Use Azure Free Tier** when possible
-2. **Optimize OpenAI calls** with caching and batching
-3. **Scale down during low usage** periods
-4. **Monitor usage** with Azure Cost Management
+1. ✅ **GPT-3.5-Turbo** - 10-15x cheaper than GPT-4
+2. ✅ **Response Caching** - 1-hour cache for repeat queries ($0.00 cost!)
+3. ✅ **Rate Limiting** - 10 req/min, 50 req/hour per IP
+4. ✅ **Reduced Token Limits** - Optimized for cost without quality loss
+5. ✅ **Always On** - Eliminates cold start delays (B1 tier)
+
+See [COST_OPTIMIZATION.md](COST_OPTIMIZATION.md) for detailed cost analysis.
 
 ## 🔧 Configuration
 
 ### Customizing AI Behavior
 
-Modify system prompts in `app/backend/approaches/chatreadretrieveread.py`:
+Modify system prompts in `app/backend/services/ai_service.py`:
 
 ```python
-SYSTEM_MESSAGE_CHAT_CONVERSATION = """
-You are an AI Career Navigator assistant...
+system_prompt = """You are an expert AI Career Navigator specializing in tech careers.
 [Customize behavior, tone, and expertise areas]
 """
 ```
@@ -283,8 +289,8 @@ You are an AI Career Navigator assistant...
 ### Adding New Analysis Features
 
 1. **Frontend**: Add new components in `app/frontend/src/components/`
-2. **Backend**: Extend approaches in `app/backend/approaches/`
-3. **Data**: Add training content in `data/` directory
+2. **Backend**: Add new routes in `app/backend/routes/api_routes.py`
+3. **Services**: Extend AI service in `app/backend/services/ai_service.py`
 
 ### Styling and Themes
 
@@ -397,10 +403,10 @@ python --version  # Should be 3.11+
 
 ## 📞 Support
 
-- **Documentation**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/your-username/ai-career-navigator/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/ai-career-navigator/discussions)
-- **Email**: support@ai-career-navigator.com
+- **Live Demo**: [ai-career-navigator-backend.azurewebsites.net](https://ai-career-navigator-backend.azurewebsites.net)
+- **Issues**: [GitHub Issues](https://github.com/Aryanjstar/AI-Career-Navigator/issues)
+- **Email**: aryanjstar3@gmail.com
+- **LinkedIn**: [Aryan Jaiswal](https://www.linkedin.com/in/aryanjstar/)
 
 ## 📄 License
 
